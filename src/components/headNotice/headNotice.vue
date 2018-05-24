@@ -22,7 +22,7 @@
       return {
         swiperOption: {
           loop: true,
-          height: 50,
+          height: 30,
           speed: 1000,
           autoplayDisableOnInteraction: false,
           autoplay: {

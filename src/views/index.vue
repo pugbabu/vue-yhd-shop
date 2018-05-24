@@ -5,6 +5,7 @@
         <head-notice></head-notice>
         <div class="floor-pic"></div>
         <rush-buy></rush-buy>
+        <buy-benefit></buy-benefit>
     </div>
 </template>
 <script>
@@ -12,6 +13,8 @@
     import iconTab from '@/components/icons/icons'
     import headNotice from '@/components/headNotice/headNotice'
     import rushBuy from '@/components/rushBuy/rushBuy'
+    import buyBenefit from '@/components/buyBenefit/buyBenefit'
+    
     
     export default {
         data() {
@@ -23,7 +26,8 @@
             bannerSlide,
             iconTab,
             headNotice,
-            rushBuy
+            rushBuy,
+            buyBenefit
         }
     }
 </script>
