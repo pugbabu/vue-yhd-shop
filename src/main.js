@@ -3,13 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 import './assets/js/rem'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import 'swiper/dist/css/swiper.css'
-
+require('./mock')
 Vue.use(MuseUI)
-
+Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
