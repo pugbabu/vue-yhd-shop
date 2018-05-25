@@ -1,22 +1,25 @@
 <template>
-  <div class="app-home">
-    <banner-slide></banner-slide>
-    <icon-tab></icon-tab>
-    <head-notice></head-notice>
-    <div class="floor-pic"></div>
-    <rush-buy></rush-buy>
-    <buy-benefit></buy-benefit>
-    <buy-quality></buy-quality>
+  <div class="quality-wrapper">
+      <h3 class="head">
+        <i class="icon"></i>
+        购·品质
+      </h3>
+      <div class="product-list">
+        <div class="product-item" v-for="(val, index) in list" :key="index">
+          <div class="text-box">
+            <div class="text">
+                <div class="main-text">{{val.mainTitle}}</div>
+                <div class="sub-text">{{val.subTitle}}</div>
+            </div>
+           
+          </div>
+          <img :src="val.pic" width="89" height="90"/>
+        </div>
+      </div>
   </div>
+ 
 </template>
 <script>
-  import bannerSlide from '@/components/banner/banner'
-  import iconTab from '@/components/icons/icons'
-  import headNotice from '@/components/headNotice/headNotice'
-  import rushBuy from '@/components/rushBuy/rushBuy'
-  import buyBenefit from '@/components/buyBenefit/buyBenefit'
-  import buyQuality from '@/components/buyQuality/buyQuality'
-  
   export default {
     data() {
       return {
@@ -54,28 +57,53 @@
         ]
       }
     },
-    components: {
-      bannerSlide,
-      iconTab,
-      headNotice,
-      rushBuy,
-      buyBenefit,
-      buyQuality
-    },
-    created() {
-      this.$http.get('/api/bannerdata').then(res => {
-        console.log(res, '!!!')
-      })
-    }
   }
-
 </script>
-<style>
-  .floor-pic {
-    width: 100%;
-    background: url('../assets/images/act1.jpg') no-repeat center;
-    height: 100px;
-    background-size: cover;
-  }
-
+<style scoped>
+.head{
+  padding: 9px 0;
+  font-size: 14px;
+}
+.head .icon{
+  background: url('../../assets/images/notice.png') no-repeat -52px -22px;
+  background-size: 76px 86px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  transform: translate3d(0, 2px, 0);
+  margin-right: 5px;
+}
+.product-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.product-item{
+  width: 50%;
+  display: flex;
+}
+.text-box{
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+.text{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+.main-text{
+  color: #212121;
+  font-size: 17px;
+  font-weight: 600;
+}
+.sub-text{
+  font-size: 12px;
+  color: #b1483f;
+}
 </style>

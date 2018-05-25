@@ -6,9 +6,12 @@
     </h3>
     <div class="product-list">
       <div class="product-item" v-for="(val, index) in list" :key="index">
-        <div class="text">
-          <div class="main-text">{{val.mainTitle}}</div>
-          <div class="sub-text">{{val.subTitle}}</div>
+        <div class="text-box">
+          <div class="text">
+            <div class="main-text">{{val.mainTitle}}</div>
+            <div class="sub-text">{{val.subTitle}}</div>
+          </div>
+        
         </div>
         <img :src="val.pic" width="89" height="90"/>
       </div>
@@ -81,11 +84,27 @@
   width: 50%;
   display: flex;
 }
-.text{
+.text-box{
   flex-grow: 1;
-  padding: 10% 0;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  position: relative;
+}
+.text{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+.main-text{
+  color: #212121;
+  font-size: 17px;
+  font-weight: 600;
+}
+.sub-text{
+  font-size: 12px;
+  color: #b1483f;
 }
 </style>
