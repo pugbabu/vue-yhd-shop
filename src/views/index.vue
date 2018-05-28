@@ -1,5 +1,6 @@
 <template>
   <div class="app-home">
+    <logo-box></logo-box>
     <banner-slide></banner-slide>
     <icon-tab></icon-tab>
     <head-notice></head-notice>
@@ -11,6 +12,7 @@
   </div>
 </template>
 <script>
+  import logoBox from '@/components/logoBox/logoBox'
   import bannerSlide from '@/components/banner/banner'
   import iconTab from '@/components/icons/icons'
   import headNotice from '@/components/headNotice/headNotice'
@@ -62,7 +64,8 @@
       rushBuy,
       buyBenefit,
       buyQuality,
-      productList
+      productList,
+      logoBox
     },
     created() {
       this.$http.get('/api/bannerdata').then(res => {
