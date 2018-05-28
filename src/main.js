@@ -11,6 +11,8 @@ import 'swiper/dist/css/swiper.css'
 import directive from './directive' //自定义指令touch
 import fastclick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
+import store from './store'
+
 
 directive(Vue)
 require('./mock')
@@ -29,6 +31,7 @@ Vue.use(VueLazyLoad, { //懒加载声明错误图和占位图
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

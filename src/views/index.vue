@@ -71,6 +71,9 @@
 
 </script>
 <style>
+  .app-home{
+    padding-bottom: 1rem;
+  }
   .floor-pic {
     width: 100%;
     background: url('../assets/images/act1.jpg') no-repeat center;

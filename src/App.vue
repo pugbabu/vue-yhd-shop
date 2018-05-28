@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <footers></footers>
+    <footers v-show="showFoot"></footers>
   </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
   name: 'App',
   components: {
     footers
+  },
+  computed: {
+    showFoot() {
+      return this.$store.getters.showFoot
+    }
   }
 }
 </script>
@@ -23,5 +28,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 </style>

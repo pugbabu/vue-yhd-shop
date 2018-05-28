@@ -60,6 +60,9 @@
   }
 </script>
 <style scoped>
+.quality-wrapper{
+  background: #fff;
+}
 .head{
   padding: 9px 0;
   font-size: 14px;

@@ -61,6 +61,9 @@
 
 </script>
 <style scoped>
+.benefit-wrapper{
+  background: #fff;
+}
 .head{
   padding: 9px 0;
   font-size: 14px;
