@@ -9,11 +9,16 @@
         <p :class="{'active-item': index === ind}" @click="changeStatus(item, index)">{{item.name}}</p>
       </div>
     </div>
-    <order-all v-if="ind === 0"></order-all>
-    <wait-pay v-if="ind === 1"></wait-pay>
-    <wait-deliver v-if="ind === 2"></wait-deliver>
-    <wait-receive v-if="ind === 3"></wait-receive>
-    <order-done v-if="ind === 4"></order-done>
+    <v-touch @swipeleft="onSwipeLeft" @swiperight="onSwipeRight">
+        <order-all v-if="ind === 0"></order-all>
+        <wait-pay v-if="ind === 1"></wait-pay>
+        <wait-deliver v-if="ind === 2"></wait-deliver>
+        <wait-receive v-if="ind === 3"></wait-receive>
+        <order-done v-if="ind === 4"></order-done>
+    </v-touch>
+        
+
+   
   </div>
 </template>
 <script>
@@ -70,6 +75,16 @@
       },
       changeStatus(item, index) {
         this.ind = index
+      },
+      onSwipeLeft() { // 向左滑动
+        if (this.ind === 4) return
+        this.ind++
+        console.log('left')
+      },
+      onSwipeRight() { // 向右滑动
+        if (this.ind === 0) return
+        this.ind--
+        console.log('right')
       }
     }
   }

@@ -1,3 +1,4 @@
+// 手写一个touch功能
 export default(Vue) => {
     Vue.directive('touch', {
         bind: function (el, binding, vnode) {

@@ -8,13 +8,13 @@ import './assets/js/rem'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import 'swiper/dist/css/swiper.css'
-import directive from './directive' //自定义指令touch
 import fastclick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
 import store from './store'
+var VueTouch = require('vue-touch') // 滑动插件
+Vue.use(VueTouch, {name: 'v-touch'})
 
-
-directive(Vue)
+// directive(Vue)
 require('./mock')
 fastclick.attach(document.body) //解决移动端点击事件200ms延迟
 
@@ -32,6 +32,8 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })
