@@ -7,6 +7,7 @@
     <rush-buy></rush-buy>
     <buy-benefit></buy-benefit>
     <buy-quality></buy-quality>
+    <product-list></product-list>
   </div>
 </template>
 <script>
@@ -16,7 +17,7 @@
   import rushBuy from '@/components/rushBuy/rushBuy'
   import buyBenefit from '@/components/buyBenefit/buyBenefit'
   import buyQuality from '@/components/buyQuality/buyQuality'
-  
+  import productList from '@/components/productList/productList'
   export default {
     data() {
       return {
@@ -60,7 +61,8 @@
       headNotice,
       rushBuy,
       buyBenefit,
-      buyQuality
+      buyQuality,
+      productList
     },
     created() {
       this.$http.get('/api/bannerdata').then(res => {
