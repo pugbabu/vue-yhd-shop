@@ -49,7 +49,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false, //打包出来的文件可以没有.map结尾的js文件
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
