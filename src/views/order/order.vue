@@ -3,6 +3,7 @@
     <header>
       <i class="icon" @click="goTo"></i>
       我的订单
+      <i class="share" @click="showTheBox"></i>
     </header>
     <div class="tab-list">
       <div class="tab-item"  v-for="(item, index) in navList" :key="index">
@@ -16,6 +17,27 @@
         <wait-receive v-if="ind === 3"></wait-receive>
         <order-done v-if="ind === 4"></order-done>
     </v-touch>
+    <transition
+     name="slideLeft"
+     enter-active-class="animated bounceInUp"
+     leave-active-class="animated bounceOutRight"
+     >
+      <div class="share-box" v-if="showbox">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+      </div>
+    </transition>
+    <transition
+      enter-active-class="animated slideInUp"
+      leave-active-class="animated slideOutDown"
+      
+    >
+      <div class="mask" v-if="showMask" @click="showTheBox">
+        <div class="box"></div>
+      </div>
+    </transition>
         
 
    
@@ -27,7 +49,7 @@
   import waitPay from './waitPay.vue'
   import waitReceive from './waitReceive.vue'
   import orderDone from './orderDone.vue'
-  
+  import CircleMenu from 'vue-circle-menu'
   export default {
     data() {
       return {
@@ -52,7 +74,9 @@
             name: '已完成',
             id: '5'
           },
-        ]
+        ],
+        showbox: false,
+        showMask: false
       }
     },
     components: {
@@ -60,7 +84,8 @@
       waitDeliver,
       waitPay,
       waitReceive,
-      orderDone
+      orderDone,
+      CircleMenu
     },
     created() {
       this.$store.commit('setShowFoot', false)
@@ -85,12 +110,30 @@
         if (this.ind === 0) return
         this.ind--
         console.log('right')
+      },
+      showTheBox() {
+        // this.showbox = !this.showbox
+        this.showMask = !this.showMask
       }
     }
   }
 
 </script>
 <style scoped>
+  /* .slideLeft-enter{
+    bottom: -20px;
+    opacity: 0;
+  }
+  .slideLeft-leave-to{
+    bottom: -20px;
+    opacity: 0;
+  } */
+  /* .slideLeft-enter-active{
+    animation: bounce-in 0.5s;
+  }
+  .slideLeft-leave-active{
+    animation: bounce-in 0.5s reverse;
+  } */
   header {
     height: 0.8rem;
     background: #6495ED;
@@ -106,6 +149,16 @@
     width: 0.36rem;
     height: 0.36rem;
     background: url('../../assets/images/arrowLeft.png') no-repeat center;
+    background-size:cover; 
+  }
+  .share{
+    position: absolute;
+    right: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.36rem;
+    height: 0.36rem;
+    background: url('../../assets/images/share.png') no-repeat center;
     background-size:cover; 
   }
   .tab-list{
@@ -129,4 +182,164 @@
     color: #6495ED;
     border-bottom: 1px solid #6495ED;
   }
+  .share-box{
+    width: 100%;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    animation-name: slideInLeft;
+  }
+  .share-box div{
+    margin: 0 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .mask{
+    background:rgba(0,0,0,0.9);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  .mask .box{
+    height: 2rem;
+    background: #fff;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .animated {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+.bounceInUp {
+  -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp;
+}
+.bounceOutUp {
+  -webkit-animation-name: bounceOutUp;
+  animation-name: bounceOutUp;
+}
+.bounceOutRight {
+  -webkit-animation-name: bounceOutRight;
+  animation-name: bounceOutRight;
+}
+ @-webkit-keyframes bounceInUp {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes bounceOutRight {
+  20% {
+    opacity: 1;
+    -webkit-transform: translate3d(-20px, 0, 0);
+    transform: translate3d(-20px, 0, 0);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
+}
+@keyframes bounceOutUp {
+  20% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -2000px, 0);
+    transform: translate3d(0, -2000px, 0);
+  }
+}
+@keyframes slideInUp {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInUp {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp 0.5s;
+}
+@keyframes slideOutDown {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.slideOutDown {
+  -webkit-animation-name: slideOutDown;
+  animation-name: slideOutDown 0.5s;
+}
+
 </style>

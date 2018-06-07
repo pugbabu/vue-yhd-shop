@@ -1,5 +1,5 @@
 ;(function(doc, win) {
-    let docEl = document.documentElement
+    let docEl = doc.documentElement
     let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'
     let recalc = () => {
         let clientWidth = docEl.clientWidth
